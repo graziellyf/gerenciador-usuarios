@@ -1,8 +1,10 @@
 import"./App.css"
-
+import React from "react";
 import Listagem from './Componentes/Listagem'
+import Cadastro from "./Componentes/Cadastro";
 
 function App() {
+
 
 //como funciona objetos em javascript
 const usuario = {
@@ -19,19 +21,22 @@ const usuario = {
 }
 
 //console.log(usuario)
-console.log(usuario.endereco.rua)
+//console.log(usuario.endereco.rua)
 
 
  //como usar um array com objetos dentro 
-  const usuarios = [
+  const usuarios_padrao = [
     
-     { nome: "Grazy", status: true },
-     { nome: "Luana", status: true },
-     { nome: "Egmar", status: true },
-     { nome: "Gabriel", status: false },
+     { nome: "Grazy", email: "Grazielly@gmail.com", status: true },
+     { nome: "Luana", email: "Luana@gmail.com", status: true },
+     { nome: "Egmar", email: "Egmar@gmail.com", status: true },
+     { nome: "Gabriel", email:"Gabriel@gmail.com", status: false },
+     
     ]
 
-   console.log(usuarios)
+    const [ usuarios,alteraUsuarios ] = React.useState( usuarios_padrao );
+
+  // console.log(usuarios)
 
 
 
@@ -42,9 +47,7 @@ console.log(usuario.endereco.rua)
 
         <Listagem usuarios={usuarios} />
 
-        <div className="caixa">
-          <h2> Cadastro </h2>
-        </div>
+        <Cadastro usuarios={usuarios} alteraUsuarios={alteraUsuarios}/>
 
     </div>
 
