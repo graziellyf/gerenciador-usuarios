@@ -1,4 +1,6 @@
 import React from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Cadastro({usuarios, alteraUsuarios}){
 
@@ -8,6 +10,83 @@ const [ email, alteraemail] = React.useState();
 
 function salvar(e){
   e.preventDefault()
+
+    
+  function validaEmail(Email){
+
+    let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return re.test(Email)
+}
+
+    if(nome == ""){
+        toast.error('Por favor digite um nome!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+    });
+
+    return false;
+
+    }
+
+   
+
+    if(nome.length <3){
+
+        toast.error('O nome deve possuir mais que 3 caracteres.', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+    });
+
+        return false;
+
+    }
+
+
+    if(email == ""){
+
+        toast.error('Por favor, digite um e-mail válido.', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+
+    });
+
+        return false;
+
+    }
+
+    if(!validaEmail(email)){
+
+        toast.error('Por favor, digite um e-mail válido.', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+    });
+
+        return false;
 
   const usuario = {
       nome: nome,
@@ -19,6 +98,9 @@ function salvar(e){
   alteraUsuarios( [ ...usuarios, usuario ] )
   //usuarios.push(usuario)
 
+}
+
+    return true;
 }
 
 return(
@@ -43,6 +125,8 @@ return(
          <label class="form-check-label" for="cboxStatus">Ativo</label>
     </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
+        <ToastContainer/>
+
     </form>
 
     </div>
