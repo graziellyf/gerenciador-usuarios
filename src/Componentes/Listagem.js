@@ -9,7 +9,7 @@ function Listagem( props ){
                 <p> Nome: {item.nome} </p> 
                 <p> Email: {item.email}</p>
                 <p> Status: {item.status == true ? "Ativo" : "Banido"} </p>
-                <button className="btn btn-primary-sm"> Remover </button>
+                <button className="btn btn-primary btn-sm"> Remover </button>
                </div>
 
             )
