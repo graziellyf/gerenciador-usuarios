@@ -2,7 +2,7 @@ import React from "react";
 import { toast } from 'react-toastify';
 
 
-function Cadastro({usuarios, alteraUsuarios}){
+function Cadastro({usuarios, alteraUsuarios, editando}){
 
 const [ nome, alteraNome ] = React.useState("");
 const [ ativo, alteraAtivo] = React.useState(false);
@@ -76,7 +76,7 @@ return(
      <div class="mb-3" >
         
         <label for="txtNome" class="form-label">Nome</label> 
-        <input onChange={ e => alteraNome(e.target.value) } class="form-control" id="txtNome" aria-describedby="emailHelp"/>
+        <input value={ editando == null ? "": editando.nome } onChange={ e => alteraNome(e.target.value) } class="form-control" id="txtNome" aria-describedby="emailHelp"/>
     
     </div>
         

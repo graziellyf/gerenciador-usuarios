@@ -37,6 +37,7 @@ const usuario = {
     ]
 
     const [ usuarios,alteraUsuarios ] = React.useState( usuarios_padrao );
+    const [ editando,alteraEditando ] = React.useState(null);
 
   // console.log(usuarios)
 
@@ -62,9 +63,9 @@ const usuario = {
       
     <div className="d-flex justify-content-around"> 
 
-        <Listagem usuarios={usuarios} alteraUsuarios={alteraUsuarios} />
+        <Listagem alteraEditando={alteraEditando} usuarios={usuarios} alteraUsuarios={alteraUsuarios} />
 
-        <Cadastro usuarios={usuarios} alteraUsuarios={alteraUsuarios}/>
+        <Cadastro editando={editando} alteraUsuarios={alteraUsuarios}/>
 
     </div>
 
