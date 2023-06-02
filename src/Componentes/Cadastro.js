@@ -1,35 +1,26 @@
 import React from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 
 function Cadastro({usuarios, alteraUsuarios}){
 
 const [ nome, alteraNome ] = React.useState("");
-const [ ativo, alteraAtivo] = React.useState(true);
+const [ ativo, alteraAtivo] = React.useState(false);
 const [ email, alteraemail] = React.useState();
 
 function salvar(e){
   e.preventDefault()
 
     
-  function validaEmail(Email){
+    function validaEmail(Email){
 
-    let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    return re.test(Email)
-}
+        return re.test(Email)
+    }
 
     if(nome == ""){
-        toast.error('Por favor digite um nome!', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-    });
+        toast('Por favor digite um nome!') 
 
     return false;
 
@@ -39,17 +30,7 @@ function salvar(e){
 
     if(nome.length <3){
 
-        toast.error('O nome deve possuir mais que 3 caracteres.', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-    });
-
+        toast('O nome deve possuir mais que 3 caracteres.')
         return false;
 
     }
@@ -57,17 +38,7 @@ function salvar(e){
 
     if(email == ""){
 
-        toast.error('Por favor, digite um e-mail válido.', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-
-    });
+        toast('Por favor, digite um e-mail válido.') 
 
         return false;
 
@@ -75,35 +46,29 @@ function salvar(e){
 
     if(!validaEmail(email)){
 
-        toast.error('Por favor, digite um e-mail válido.', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-    });
-
+        toast('Por favor, digite um e-mail válido.')
         return false;
-
-  const usuario = {
-      nome: nome,
-      ativo: ativo,
-      email: email
-  }
-
-  //o  operador ... se chama spread ou "despejar"
-  alteraUsuarios( [ ...usuarios, usuario ] )
-  //usuarios.push(usuario)
-
-}
-
+            
+    }
+    const usuario = {
+        nome: nome,
+        status: ativo,
+        email: email
+    }
+    
+    //o  operador ... se chama spread ou "despejar"
+    alteraUsuarios( [ ...usuarios, usuario ] )
+    //usuarios.push(usuario)
+    
     return true;
+
 }
+
+
+
 
 return(
+
 <div className="caixa">
     <h2> Cadastro </h2>
 
@@ -125,7 +90,6 @@ return(
          <label class="form-check-label" for="cboxStatus">Ativo</label>
     </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <ToastContainer/>
 
     </form>
 

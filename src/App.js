@@ -2,6 +2,8 @@ import"./App.css"
 import React from "react";
 import Listagem from './Componentes/Listagem'
 import Cadastro from "./Componentes/Cadastro";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -42,10 +44,25 @@ const usuario = {
 
   return (
     <div className="container">
+
+      <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          />
+          {/* Same as */}
+      <ToastContainer />
       
     <div className="d-flex justify-content-around"> 
 
-        <Listagem usuarios={usuarios} />
+        <Listagem usuarios={usuarios} alteraUsuarios={alteraUsuarios} />
 
         <Cadastro usuarios={usuarios} alteraUsuarios={alteraUsuarios}/>
 
