@@ -4,43 +4,29 @@ import Listagem from './Componentes/Listagem'
 import Cadastro from "./Componentes/Cadastro";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import supabase from "./supabase";
+
 
 function App() {
 
+    const [ usuarios,alteraUsuarios ] = React.useState( [] );
 
-//como funciona objetos em javascript
-const usuario = {
-  // chave: valor
-  nome:"Grazy",
-  idade: 18,
-  status:true,
-  endereco: {
-    rua: "Rua X",
-    numero: 139,
-    complemento: "ap 20"
-  },
-  vacinasCovid19: ["Pfizer", "Pfizer", "Pfizer", "J&J"]
-}
+    function buscaTodos(){
+        supabase.from("usuarios").select()
+        .then( response => {
+          console.log("Conexão bem sucedida!");
+          console.log(response)
+          alteraUsuarios(response.data);
+        } )
+        .catch( response => {
+          console.log("Deu erro na conexão")
+          console.log(response)
+        })
+    }
 
-//console.log(usuario)
-//console.log(usuario.endereco.rua)
-
-
- //como usar um array com objetos dentro 
-  const usuarios_padrao = [
-    
-     { nome: "Grazy", email: "Grazielly@gmail.com", status: true },
-     { nome: "Luana", email: "Luana@gmail.com", status: true },
-     { nome: "Egmar", email: "Egmar@gmail.com", status: true },
-     { nome: "Gabriel", email:"Gabriel@gmail.com", status: false },
-     
-    ]
-
-    const [ usuarios,alteraUsuarios ] = React.useState( usuarios_padrao );
-
-  // console.log(usuarios)
-
-
+    React.useEffect( ()=> {
+      buscaTodos();
+    }, [] )
 
   return (
     <div className="container">
